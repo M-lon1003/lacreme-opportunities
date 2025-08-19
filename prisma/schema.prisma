@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enumerations
+enum OpportunityCategory {
+  Grant
+  EOI
+  Residency
+  Award
+}
+
+enum NotifyFrequency {
+  off
+  daily
+  weekly
+}
+
+enum Role {
+  admin
+  member
+}
+
+enum SavedStatus {
+  New
+  Saved
+  Applied
+}
+
+model Opportunity {
+  id            String      @id @default(cuid())
+  name          String
+  category      OpportunityCategory
+  disciplines   String[]
+  location      String
+  org           String
+  amount        Float?
+  currency      String?
+  opensOn       DateTime?
+  closesOn      DateTime?
+  url           String
+  eligibility   String[]
+  fee           Float?
+  source        String
+  tags          String[]
+  fitScore      Int         @default(0)
+  checksum      String
+  lastCheckedAt DateTime
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  SavedItems    SavedItem[]
+}
+
+model UserProfile {
+  id                 String         @id @default(cuid())
+  email              String         @unique
+  name               String?
+  disciplines        String[]
+  locations          String[]
+  minAmount          Float?
+  maxFee             Float?
+  notifyFrequency    NotifyFrequency @default(weekly)
+  deadlineBufferDays Int            @default(7)
+  blockedSources     String[]
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  role               Role           @default(member)
+  SavedItems         SavedItem[]
+}
+
+model SavedItem {
+  id           String       @id @default(cuid())
+  userId       String
+  opportunityId String
+  status       SavedStatus  @default(New)
+  notes        String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  user         UserProfile  @relation(fields: [userId], references: [id])
+  opportunity  Opportunity   @relation(fields: [opportunityId], references: [id])
+
+  @@unique([userId, opportunityId])
+}
