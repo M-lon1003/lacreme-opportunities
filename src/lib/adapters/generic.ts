@@ -1,4 +1,4 @@
-import type { Opportunity } from '@/lib/scoring'
+import type { Opportunity } from '../scoring'
 
 /**
  * Generic web search adapter.  This stub demonstrates the interface but
