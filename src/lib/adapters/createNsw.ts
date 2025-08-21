@@ -1,5 +1,5 @@
 import { OpportunityCategory } from '@prisma/client'
-import type { Opportunity } from '@/lib/scoring'
+import type { Opportunity } from '../scoring'
 import { computeChecksumFor } from '../dedupe'
 
 /**
