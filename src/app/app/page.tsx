@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import OpportunityTable, { OpportunityRow } from '../../components/OpportunityTable'
 import OpportunityDrawer, { OpportunityDetail } from '../../components/OpportunityDrawer'
-import { DISCIPLINES, LOCATIONS, MIN_AMOUNTS, amountLabel } from '../../lib/filters'
+import { DISCIPLINES, LOCATIONS, MIN_AMOUNTS, amountLabel } from '@/lib/filters'
 
 // Client-side fit score (mirrors server weights for now)
 function computeFit(op: any, prefs: any) {
