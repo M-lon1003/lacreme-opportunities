@@ -21,11 +21,9 @@ export default function AppPage() {
 
         <div className="mt-8 grid gap-6 md:grid-cols-[280px_1fr]">
           <aside className="rounded-2xl border bg-white p-4">
-            {/* Filtros / Drawer (placeholder) */}
             <OpportunityDrawer />
           </aside>
           <main className="rounded-2xl border bg-white p-4">
-            {/* Tabla de oportunidades */}
             <OpportunityTable />
           </main>
         </div>
