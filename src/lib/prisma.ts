@@ -1,17 +1,14 @@
-import { PrismaClient } from '@prisma/client'
+// src/lib/prisma.ts
+import { PrismaClient } from '@prisma/client';
 
-// Instantiate a single PrismaClient.  In serverless environments the client
-// might be re‑created on each request; here we reuse a global instance when
-// available to avoid exhausting database connections.
-declare global {
-  // eslint-disable-next-line no-var
-  var __prisma__: PrismaClient | undefined
-}
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
-const prisma = global.__prisma__ || new PrismaClient()
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    log: ['warn', 'error'],
+  });
 
-if (process.env.NODE_ENV !== 'production') {
-  global.__prisma__ = prisma
-}
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
-export default prisma
+export default prisma;
