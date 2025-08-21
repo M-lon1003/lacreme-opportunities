@@ -63,20 +63,21 @@ function computeFit(op: any, prefs: any) {
 export default function AppPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const sp = (searchParams as any) ?? new URLSearchParams()
 
   // URL-driven simple filters
   const [filters, setFilters] = useState({
-    q: searchParams.get('q') || '',
-    category: searchParams.get('category') || '',
-    dateFrom: searchParams.get('dateFrom') || '',
-    dateTo: searchParams.get('dateTo') || '',
-    sort: searchParams.get('sort') || 'closesOn',
+    q: sp.get('q') || '',
+    category: sp.get('category') || '',
+    dateFrom: sp.get('dateFrom') || '',
+    dateTo: sp.get('dateTo') || '',
+    sort: sp.get('sort') || 'closesOn',
   })
 
   // New chooser-driven filters
-  const [disciplines, setDisciplines] = useState<string[]>(searchParams.getAll('discipline'))
-  const [location, setLocation] = useState(searchParams.get('location') || '')
-  const [minAmount, setMinAmount] = useState<number>(Number(searchParams.get('minAmount') || 0))
+  const [disciplines, setDisciplines] = useState<string[]>(sp.getAll('discipline'))
+  const [location, setLocation] = useState(sp.get('location') || '')
+  const [minAmount, setMinAmount] = useState<number>(Number(sp.get('minAmount') || 0))
 
   // Saved prefs (lightweight)
   const [prefs, setPrefs] = useState<any>({ disciplines: [], locations: [], minAmount: null, deadlineBufferDays: 0 })
