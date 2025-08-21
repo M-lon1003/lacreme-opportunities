@@ -2,5 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Puedes poner estilos globales aquí si quieres */
-:root { color-scheme: light dark; }
+/* Global overrides */
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: theme('fontFamily.sans');
+  background-color: theme('colors.background.DEFAULT');
+  color: theme('colors.neutral.700');
+  line-height: 1.5;
+}
+
+a {
+  color: theme('colors.primary.DEFAULT');
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
