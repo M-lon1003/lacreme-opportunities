@@ -1,4 +1,4 @@
-import type { Opportunity } from '@/lib/scoring'
+import type { Opportunity } from '../scoring'
 
 /**
  * Adapter for the City of Sydney creative grants pages.
