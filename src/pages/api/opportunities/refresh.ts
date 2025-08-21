@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '@/lib/prisma'
+import { prisma } from '@/lib/prisma';
 import { computeChecksumFor, mergeOpportunity } from '@/lib/dedupe'
 import { fetchOpportunities as fetchCreateNsw } from '@/lib/adapters/createNsw'
 import { fetchOpportunities as fetchCityOfSydney } from '@/lib/adapters/cityOfSydney'
