@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import OpportunityTable from '@/components/OpportunityTable';
+import OpportunityDrawer from '@/components/OpportunityDrawer';
 
 export default function Home() {
   return (
