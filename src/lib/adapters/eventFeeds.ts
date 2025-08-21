@@ -1,4 +1,4 @@
-import type { Opportunity } from '@/lib/scoring'
+import type { Opportunity } from '../scoring'
 
 /**
  * Adapter for Eventbrite and Humanitix feeds.  For the MVP we don’t
